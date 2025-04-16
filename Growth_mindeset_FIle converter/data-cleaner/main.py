@@ -6,7 +6,7 @@ st.set_page_config(page_title="File converter& CLeaner", layout="wide")
 st.title("File converter🗂️ & Cleaner🧹")
 st.write("Ulpload your CSV and Excel Files to clean the data convert format effortlessly")
 
-files = st.file_uploader("Upload CSV or Excel files", type=["csv", "xlxs"], accept_multiple_files=True)
+files = st.file_uploader("Upload CSV or Excel files", type=["csv", "xlsx"], accept_multiple_files=True)
 
 if files:
     for file in files:
@@ -21,8 +21,8 @@ if files:
             st.success("Missing Values Filled Successfully!🎉")
             st.dataframe(df.head())
 
-        seleceted_columns = st.multiselect(f"Select Columns, {file.name}", df.columns, default=df.columns)
-        df = df [seleceted_columns]
+        selected_columns = st.multiselect(f"Select Columns, {file.name}", df.columns, default=df.columns)
+        df = df [selected_columns]
         st.dataframe(df.head())
 
         if st.checkbox(f"📊 Show Chart - {file.name}") and not df.select_dtypes(include="number").empty:
